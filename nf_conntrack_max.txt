@@ -1,0 +1,26 @@
+// i don't remember source of thin guide, but after deploy it my game server never crash again
+
+
+Issue
+Packet drops on this system for connections using ip_conntrack or nf_conntrack. 
+Following messages seen in /var/log/kern on the centos nodes when one of the instances drops packets:
+
+$ cat /proc/sys/net/netfilter/nf_conntrack_max
+To see the current used connections
+
+$ cat /proc/sys/net/netfilter/nf_conntrack_count
+Increase maximum configured connections limit
+
+# Temporarily Solution
+echo 524288 > /proc/sys/net/netfilter/nf_conntrack_max
+
+
+---------------------------------
+# Permanent Solution
+# Add following line on /etc/rc.d/rc.local
+
+$ vim /etc/rc.d/rc.local
+echo 524288 > /proc/sys/net/netfilter/nf_conntrack_max
+
+$ chmod a+x /etc/rc.d/rc.local
+
