@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 1 > /proc/sys/net/ipv4/ip_forward
+echo 0 > /proc/sys/net/ipv4/ip_forward
 for i in /proc/sys/net/ipv4/conf/*/rp_filter; do echo 1 > $i; done
 echo 1 > /proc/sys/net/ipv4/tcp_syncookies
 echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_all
